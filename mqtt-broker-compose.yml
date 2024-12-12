@@ -1,0 +1,9 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    hostname: mosquitto
+    container_name: mosquitto
+    restart: unless-stopped    
+    network_mode: "host"
+    volumes:
+      - c:/docker/mosquitto:/etc/mosquitto
