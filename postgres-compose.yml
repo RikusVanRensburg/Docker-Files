@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    restart: always
+    network_mode: "host"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_container
+    restart: always
+    network_mode: "host"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@domain.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_PORT: 5050
+    depends_on:
+      - postgres
